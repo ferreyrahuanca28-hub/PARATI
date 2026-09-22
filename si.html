@@ -1,0 +1,4926 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#e5b93f"
+    >
+
+    <title>¡Dijo que sí! 💛</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Pacifico&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+
+            --amarillo: #ffd54f;
+            --amarillo-fuerte: #ffc107;
+            --amarillo-suave: #fff3bd;
+
+            --rosa: #d81b60;
+            --rosa-claro: #ff6f9f;
+
+            --marron: #5d4037;
+
+            --px: 0px;
+            --py: 0px;
+            --scroll-parallax: 0px;
+
+            --ancho-contenido: 1180px;
+
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            margin: 0;
+
+            width: 100%;
+
+            min-height: 100vh;
+            min-height: 100dvh;
+
+            overflow-x: hidden;
+
+            font-family:
+                'Fredoka',
+                sans-serif;
+
+            color:
+                var(--marron);
+
+            background:
+                #15100c;
+
+            -webkit-font-smoothing:
+                antialiased;
+
+        }
+
+        img,
+        video {
+            max-width: 100%;
+        }
+
+        button {
+            -webkit-tap-highlight-color:
+                transparent;
+        }
+
+
+        /* ========================================
+           FONDO PARALLAX
+        ======================================== */
+
+        .fondo-parallax {
+
+            position: fixed;
+
+            inset: -35px;
+
+            z-index: -20;
+
+            pointer-events: none;
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.35),
+                    calc(
+                        var(--py) * -0.35 +
+                        var(--scroll-parallax) * -0.05
+                    ),
+                    0
+                );
+
+            will-change:
+                transform;
+
+        }
+
+        .fondo {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                linear-gradient(
+                    rgba(20, 10, 0, .18),
+                    rgba(20, 10, 0, .48)
+                ),
+
+                url('img/fondo1.png')
+                center center /
+                cover
+                no-repeat;
+
+            transform:
+                scale(1.08);
+
+            animation:
+                zoomFondo
+                20s
+                ease-in-out
+                infinite alternate;
+
+        }
+
+        @keyframes zoomFondo {
+
+            from {
+                transform:
+                    scale(1.08);
+            }
+
+            to {
+                transform:
+                    scale(1.15);
+            }
+
+        }
+
+
+        .fondo-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -15;
+
+            pointer-events: none;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    transparent 20%,
+                    rgba(0,0,0,.08) 52%,
+                    rgba(0,0,0,.52) 100%
+                );
+
+        }
+
+
+        /* ========================================
+           LUZ PARALLAX
+        ======================================== */
+
+        .luz-parallax {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -14;
+
+            pointer-events: none;
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.50),
+                    calc(
+                        var(--py) * -0.50 +
+                        var(--scroll-parallax) * -0.08
+                    ),
+                    0
+                );
+
+            will-change:
+                transform;
+
+        }
+
+        .luz-central {
+
+            position: absolute;
+
+            top: 35%;
+            left: 50%;
+
+            width:
+                min(
+                    800px,
+                    95vw
+                );
+
+            aspect-ratio:
+                1 / 1;
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,213,79,.18),
+                    rgba(255,193,7,.06) 40%,
+                    transparent 70%
+                );
+
+            filter:
+                blur(22px);
+
+            animation:
+                respirarLuz
+                5s ease-in-out
+                infinite;
+
+        }
+
+        @keyframes respirarLuz {
+
+            0%,
+            100% {
+
+                opacity: .45;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.92);
+
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.06);
+
+            }
+
+        }
+
+
+        /* ========================================
+           CIELO PROFUNDO
+        ======================================== */
+
+        #cieloProfundo {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -12;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+        }
+
+        .capa-estrellas,
+        .capa-luciernagas {
+
+            position: absolute;
+
+            inset: -30px;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            will-change:
+                transform;
+
+        }
+
+
+        /* Más lejanas */
+
+        .capa-1 {
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.06),
+                    calc(
+                        var(--py) * -0.06 +
+                        var(--scroll-parallax) * -0.015
+                    ),
+                    0
+                );
+
+        }
+
+
+        /* Medias */
+
+        .capa-2 {
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.14),
+                    calc(
+                        var(--py) * -0.14 +
+                        var(--scroll-parallax) * -0.03
+                    ),
+                    0
+                );
+
+        }
+
+
+        /* Cercanas */
+
+        .capa-3 {
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.28),
+                    calc(
+                        var(--py) * -0.28 +
+                        var(--scroll-parallax) * -0.055
+                    ),
+                    0
+                );
+
+        }
+
+
+        .capa-luci-1 {
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.18),
+                    calc(
+                        var(--py) * -0.18 +
+                        var(--scroll-parallax) * -0.035
+                    ),
+                    0
+                );
+
+        }
+
+
+        .capa-luci-2 {
+
+            transform:
+                translate3d(
+                    calc(var(--px) * -0.35),
+                    calc(
+                        var(--py) * -0.35 +
+                        var(--scroll-parallax) * -0.07
+                    ),
+                    0
+                );
+
+        }
+
+
+        /* ========================================
+           ESTRELLAS
+        ======================================== */
+
+        .estrella {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            opacity: 0;
+
+            animation:
+                titilar
+                ease-in-out
+                infinite;
+
+        }
+
+        .estrella.lejana {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .68
+                );
+
+            filter:
+                blur(.4px);
+
+            box-shadow:
+
+                0 0 4px
+                rgba(255,255,255,.32);
+
+        }
+
+        .estrella.media {
+
+            background:
+                rgba(
+                    255,
+                    247,
+                    218,
+                    .82
+                );
+
+            box-shadow:
+
+                0 0 6px
+                rgba(255,255,255,.45),
+
+                0 0 10px
+                rgba(255,218,120,.18);
+
+        }
+
+        .estrella.cercana {
+
+            background:
+                rgba(
+                    255,
+                    252,
+                    235,
+                    .95
+                );
+
+            box-shadow:
+
+                0 0 7px
+                rgba(255,255,255,.72),
+
+                0 0 14px
+                rgba(255,220,120,.25);
+
+        }
+
+        .estrella.bokeh {
+
+            border-radius: 50%;
+
+            filter:
+                blur(2.5px);
+
+            background:
+                rgba(
+                    255,
+                    232,
+                    160,
+                    .10
+                );
+
+            box-shadow:
+
+                0 0 20px
+                rgba(
+                    255,
+                    220,
+                    110,
+                    .15
+                );
+
+        }
+
+        @keyframes titilar {
+
+            0%,
+            100% {
+
+                opacity:
+                    var(--opMin);
+
+            }
+
+            50% {
+
+                opacity:
+                    var(--opMax);
+
+            }
+
+        }
+
+
+        /* ========================================
+           LUCIÉRNAGAS
+        ======================================== */
+
+        .luciernaga {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            opacity: 0;
+
+            background:
+                rgba(
+                    255,
+                    239,
+                    145,
+                    1
+                );
+
+            box-shadow:
+
+                0 0 10px
+                rgba(255,222,100,.9),
+
+                0 0 18px
+                rgba(255,222,100,.55),
+
+                0 0 30px
+                rgba(255,222,100,.20);
+
+            animation:
+
+                flotarLuci
+                var(--duracion)
+                ease-in-out
+                infinite,
+
+                brillarLuci
+                var(--brillo)
+                ease-in-out
+                infinite;
+
+            animation-delay:
+                var(--delay);
+
+            will-change:
+                transform,
+                opacity;
+
+        }
+
+        .luciernaga.leve {
+            filter:
+                blur(.2px);
+        }
+
+        .luciernaga.suave {
+
+            filter:
+                blur(.8px);
+
+        }
+
+        @keyframes flotarLuci {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translate3d(
+                        0,
+                        0,
+                        0
+                    )
+                    scale(.75);
+
+            }
+
+            15% {
+
+                opacity: .9;
+
+            }
+
+            50% {
+
+                transform:
+                    translate3d(
+                        var(--movX),
+                        var(--movY),
+                        0
+                    )
+                    scale(1.05);
+
+            }
+
+            85% {
+
+                opacity: .80;
+
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translate3d(
+                        calc(
+                            var(--movX) * -.35
+                        ),
+                        calc(
+                            var(--movY) * -1.2
+                        ),
+                        0
+                    )
+                    scale(.7);
+
+            }
+
+        }
+
+
+        @keyframes brillarLuci {
+
+            0%,
+            100% {
+
+                filter:
+                    brightness(.80);
+
+            }
+
+            50% {
+
+                filter:
+                    brightness(1.35);
+
+            }
+
+        }
+
+
+        /* ========================================
+           INTRO
+        ======================================== */
+
+        .intro {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 10000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding:
+                20px;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,214,79,.12),
+                    rgba(40,10,15,.97)
+                );
+
+            transition:
+
+                opacity 1s ease,
+
+                visibility 1s ease;
+
+        }
+
+        .intro.ocultar {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+        }
+
+        .intro-contenido {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            text-align: center;
+
+            color: white;
+
+            animation:
+                aparecerIntro
+                1.25s ease;
+
+        }
+
+        @keyframes aparecerIntro {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(.75)
+                    translateY(20px);
+
+                filter:
+                    blur(8px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+
+                filter:
+                    blur(0);
+
+            }
+
+        }
+
+        .intro-flor {
+
+            display: inline-block;
+
+            font-size:
+                clamp(
+                    4.5rem,
+                    10vw,
+                    7.5rem
+                );
+
+            animation:
+                flotarFlor
+                2.5s ease-in-out
+                infinite;
+
+        }
+
+        @keyframes flotarFlor {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(-4deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-12px)
+                    rotate(4deg);
+
+            }
+
+        }
+
+        .intro h1 {
+
+            margin-top: 10px;
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+            font-size:
+                clamp(
+                    2rem,
+                    6vw,
+                    4rem
+                );
+
+            line-height: 1.3;
+
+            text-shadow:
+
+                0 4px 12px
+                rgba(0,0,0,.55),
+
+                0 0 30px
+                rgba(255,213,79,.24);
+
+        }
+
+        .intro p {
+
+            margin:
+                16px auto
+                0;
+
+            max-width: 500px;
+
+            font-size:
+                clamp(
+                    .95rem,
+                    2vw,
+                    1.15rem
+                );
+
+            opacity: .9;
+
+        }
+
+
+        /* ========================================
+           CONTENIDO
+        ======================================== */
+
+        .contenido {
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+        .container-personalizado {
+
+            width:
+                min(
+                    calc(
+                        100% - 32px
+                    ),
+                    var(--ancho-contenido)
+                );
+
+            margin-inline: auto;
+
+        }
+
+        section {
+
+            position: relative;
+
+            padding:
+                clamp(
+                    55px,
+                    8vw,
+                    90px
+                )
+                0;
+
+        }
+
+        .separador {
+
+            width:
+                min(
+                    82%,
+                    850px
+                );
+
+            height: 1px;
+
+            margin-inline: auto;
+
+            position: relative;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.58),
+                    transparent
+                );
+
+        }
+
+        .separador::after {
+
+            content:
+                "🌻";
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
+
+            padding:
+                0 15px;
+
+            font-size: 1.2rem;
+
+        }
+
+        .texto-pacifico {
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+        }
+
+        .titulo-seccion {
+
+            margin: 0;
+
+            color: white;
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+            font-size:
+                clamp(
+                    2rem,
+                    5vw,
+                    3.3rem
+                );
+
+            line-height: 1.35;
+
+            text-shadow:
+
+                0 4px 10px
+                rgba(0,0,0,.75),
+
+                0 0 18px
+                rgba(0,0,0,.35);
+
+        }
+
+        .subtitulo-seccion {
+
+            max-width: 650px;
+
+            margin:
+                12px auto
+                0;
+
+            color:
+                rgba(255,255,255,.94);
+
+            font-size:
+                clamp(
+                    .95rem,
+                    2vw,
+                    1.1rem
+                );
+
+            line-height: 1.65;
+
+            text-shadow:
+                0 2px 6px
+                rgba(0,0,0,.8);
+
+        }
+
+
+        /* ========================================
+           REVEAL
+        ======================================== */
+
+        .revelar {
+
+            opacity: 0;
+
+            transform:
+                translateY(45px)
+                scale(.97);
+
+            filter:
+                blur(5px);
+
+            transition:
+
+                opacity
+                .95s cubic-bezier(.22,1,.36,1),
+
+                transform
+                .95s cubic-bezier(.22,1,.36,1),
+
+                filter
+                .95s ease;
+
+        }
+
+        .revelar.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            filter:
+                blur(0);
+
+        }
+
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .hero {
+
+            min-height:
+                100svh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                70px 16px;
+
+        }
+
+        .hero-contenido {
+
+            width: 100%;
+
+            max-width: 800px;
+
+        }
+
+        .hero-flor {
+
+            font-size:
+                clamp(
+                    3.5rem,
+                    8vw,
+                    5rem
+                );
+
+            animation:
+                flotar
+                3s ease-in-out
+                infinite;
+
+        }
+
+        .hero-titulo {
+
+            margin:
+                10px auto
+                0;
+
+            color: white;
+
+            font-family:
+                'Pacifico',
+                cursive;
+
+            font-size:
+                clamp(
+                    2.4rem,
+                    7vw,
+                    5rem
+                );
+
+            line-height: 1.25;
+
+            text-shadow:
+
+                0 5px 12px
+                rgba(0,0,0,.72),
+
+                0 0 30px
+                rgba(255,213,79,.22);
+
+        }
+
+        .hero-subtitulo {
+
+            max-width: 620px;
+
+            margin:
+                18px auto
+                0;
+
+            padding:
+                0 8px;
+
+            color:
+                rgba(255,255,255,.94);
+
+            font-size:
+                clamp(
+                    .98rem,
+                    2.4vw,
+                    1.18rem
+                );
+
+            line-height: 1.7;
+
+            text-shadow:
+                0 2px 5px
+                rgba(0,0,0,.8);
+
+        }
+
+        .flecha-abajo {
+
+            display: inline-block;
+
+            margin-top: 36px;
+
+            color: white;
+
+            font-size: 2rem;
+
+            animation:
+                flecha
+                1.5s ease-in-out
+                infinite;
+
+        }
+
+        @keyframes flecha {
+
+            50% {
+
+                transform:
+                    translateY(10px);
+
+            }
+
+        }
+
+
+        /* ========================================
+           CARTA
+        ======================================== */
+
+        .sobre-area {
+
+            width: 100%;
+
+            max-width: 720px;
+
+            margin-inline: auto;
+
+        }
+
+        .carta-box {
+
+            position: relative;
+
+            width: 100%;
+
+            min-height: 250px;
+
+            padding:
+
+                clamp(
+                    45px,
+                    6vw,
+                    55px
+                )
+
+                clamp(
+                    24px,
+                    5vw,
+                    42px
+                )
+
+                35px;
+
+            border-radius:
+                25px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.98),
+                    rgba(255,249,226,.96)
+                );
+
+            border-top:
+                6px solid
+                var(--amarillo);
+
+            box-shadow:
+                0 20px 55px
+                rgba(0,0,0,.28);
+
+        }
+
+        .carta-box::before {
+
+            content:
+                "💌";
+
+            position: absolute;
+
+            top: -35px;
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                var(--amarillo);
+
+            font-size: 2rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0,0,0,.2);
+
+        }
+
+        #texto-maquina {
+
+            display: inline;
+
+            color:
+                #66463e;
+
+            font-size:
+                clamp(
+                    1rem,
+                    2.3vw,
+                    1.2rem
+                );
+
+            line-height: 1.8;
+
+            overflow-wrap:
+                anywhere;
+
+        }
+
+        .cursor {
+
+            display: inline-block;
+
+            width: 3px;
+            height: 1.25em;
+
+            margin-left: 4px;
+
+            vertical-align: middle;
+
+            background:
+                var(--rosa);
+
+            animation:
+                cursor
+                .8s infinite;
+
+        }
+
+        @keyframes cursor {
+
+            50% {
+                opacity: 0;
+            }
+
+        }
+
+
+        /* ========================================
+           RAMO
+        ======================================== */
+
+        .ramo {
+
+            width:
+                min(
+                    80vw,
+                    300px
+                );
+
+            filter:
+                drop-shadow(
+                    0 18px 16px
+                    rgba(0,0,0,.4)
+                );
+
+            animation:
+                flotar
+                3.5s ease-in-out
+                infinite;
+
+            transition:
+                transform .35s ease;
+
+            cursor: pointer;
+
+        }
+
+        .ramo:hover {
+
+            transform:
+                scale(1.07)
+                rotate(3deg);
+
+        }
+
+        @keyframes flotar {
+
+            50% {
+
+                transform:
+                    translateY(-13px);
+
+            }
+
+        }
+
+
+        /* ========================================
+           POLAROIDS
+        ======================================== */
+
+        .galeria-polaroid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                clamp(
+                    20px,
+                    3vw,
+                    35px
+                );
+
+            align-items: center;
+
+        }
+
+        .polaroid {
+
+            width: 100%;
+
+            padding:
+                14px
+                14px
+                38px;
+
+            background:
+                white;
+
+            border-radius: 5px;
+
+            box-shadow:
+                0 14px 35px
+                rgba(0,0,0,.30);
+
+            transition:
+                transform .45s ease,
+                box-shadow .45s ease;
+
+        }
+
+        .polaroid img {
+
+            width: 100%;
+
+            aspect-ratio:
+                1 / 1;
+
+            display: block;
+
+            object-fit: cover;
+
+        }
+
+        .polaroid:hover {
+
+            z-index: 5;
+
+            transform:
+                translateY(-10px)
+                scale(1.04)
+                rotate(0deg)
+                !important;
+
+            box-shadow:
+                0 25px 55px
+                rgba(0,0,0,.45);
+
+        }
+
+        .rot-1 {
+            transform:
+                rotate(-4deg);
+        }
+
+        .rot-2 {
+            transform:
+                rotate(3deg)
+                translateY(18px);
+        }
+
+        .rot-3 {
+            transform:
+                rotate(-2deg);
+        }
+
+        .polaroid p {
+
+            margin:
+                14px 0
+                0;
+
+            color:
+                var(--rosa);
+
+            font-size:
+                clamp(
+                    1rem,
+                    2vw,
+                    1.3rem
+                );
+
+        }
+
+
+        /* ========================================
+           ADORNOS
+        ======================================== */
+
+        .adornos-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0,1fr)
+                );
+
+            align-items: center;
+
+            justify-items: center;
+
+            gap: 25px;
+
+            max-width: 800px;
+
+            margin-inline: auto;
+
+        }
+
+        .adorno {
+
+            width:
+                min(
+                    100%,
+                    180px
+                );
+
+            filter:
+                drop-shadow(
+                    0 12px 12px
+                    rgba(0,0,0,.3)
+                );
+
+            animation:
+                flotar
+                4s ease-in-out
+                infinite;
+
+        }
+
+
+        /* ========================================
+           BOTONES SORPRESA
+        ======================================== */
+
+        .sorpresas-box {
+
+            width: 100%;
+
+            max-width: 720px;
+
+            margin-inline: auto;
+
+        }
+
+        .btn-sorpresa {
+
+            width: 100%;
+
+            min-height: 52px;
+
+            padding:
+                13px 22px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            color:
+                #5d4037;
+
+            font-weight: 600;
+
+            font-size:
+                1.05rem;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffe477,
+                    #ffc107
+                );
+
+            box-shadow:
+                0 8px 22px
+                rgba(0,0,0,.22);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+
+        }
+
+        .btn-sorpresa:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.015);
+
+            box-shadow:
+                0 14px 30px
+                rgba(255,193,7,.35);
+
+        }
+
+        .mensaje-oculto {
+
+            padding:
+                20px;
+
+            margin-top: 10px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,.97);
+
+            border-left:
+                5px solid
+                var(--rosa);
+
+            line-height: 1.65;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,.18);
+
+        }
+
+
+        /* ========================================
+           MEDIDOR
+        ======================================== */
+
+        .medidor-box {
+
+            width: 100%;
+
+            max-width: 560px;
+
+            margin-inline: auto;
+
+            padding:
+                35px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            backdrop-filter:
+                blur(12px);
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.25);
+
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background:
+                var(--rosa);
+        }
+
+        #nivelCarino {
+
+            color:
+                #ffe06d;
+
+            font-size: 1.7rem;
+
+            font-weight: 600;
+
+            text-shadow:
+                0 2px 5px
+                rgba(0,0,0,.7);
+
+        }
+
+        #mensaje-medidor {
+
+            min-height: 42px;
+
+            opacity: 0;
+
+            color:
+                #ffe06d;
+
+            font-weight: 600;
+
+            transition:
+                opacity .4s ease;
+
+            text-shadow:
+                0 2px 4px
+                rgba(0,0,0,.8);
+
+        }
+
+
+        /* ========================================
+           VALES
+        ======================================== */
+
+        .vales-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0,1fr)
+                );
+
+            gap: 25px;
+
+        }
+
+        .ticket-vale {
+
+            position: relative;
+
+            min-height: 240px;
+
+            padding:
+                28px 22px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    #fffdf5,
+                    #fff3c9
+                );
+
+            border:
+                3px dashed
+                var(--rosa);
+
+            box-shadow:
+                0 14px 35px
+                rgba(0,0,0,.25);
+
+            transition:
+                transform .35s ease,
+                box-shadow .35s ease;
+
+        }
+
+        .ticket-vale::before,
+        .ticket-vale::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 50%;
+
+            width: 26px;
+            height: 26px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(35,20,10,.72);
+
+        }
+
+        .ticket-vale::before {
+            left: -14px;
+        }
+
+        .ticket-vale::after {
+            right: -14px;
+        }
+
+        .ticket-vale:hover {
+
+            transform:
+                translateY(-8px)
+                rotate(-1deg);
+
+            box-shadow:
+                0 25px 50px
+                rgba(0,0,0,.4);
+
+        }
+
+        .vale-icono {
+            font-size: 2.8rem;
+        }
+
+        .ticket-vale h4 {
+            color:
+                var(--rosa);
+        }
+
+
+        /* ========================================
+           VIDEO
+        ======================================== */
+
+        .video-final {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            margin-inline: auto;
+
+            padding: 8px;
+
+            border-radius: 28px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ffd54f,
+                    #ffffff,
+                    #ffc107
+                );
+
+            box-shadow:
+                0 20px 55px
+                rgba(0,0,0,.45);
+
+        }
+
+        .video-final video {
+
+            width: 100%;
+
+            max-height: 75vh;
+
+            display: block;
+
+            object-fit: contain;
+
+            border-radius: 21px;
+
+            background: #000;
+
+        }
+
+
+        /* ========================================
+           FINAL
+        ======================================== */
+
+        .final {
+
+            min-height:
+                70svh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+        }
+
+        .final-contenido {
+
+            max-width: 720px;
+
+            margin-inline: auto;
+
+        }
+
+        .final-corazon {
+
+            font-size:
+                clamp(
+                    3rem,
+                    8vw,
+                    5rem
+                );
+
+            animation:
+                latido
+                1.25s ease-in-out
+                infinite;
+
+        }
+
+        @keyframes latido {
+
+            50% {
+                transform:
+                    scale(1.15);
+            }
+
+        }
+
+
+        /* ========================================
+           MÚSICA
+        ======================================== */
+
+        .btn-musica {
+
+            position: fixed;
+
+            right: 16px;
+            bottom: 16px;
+
+            width: 50px;
+            height: 50px;
+
+            z-index: 5000;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.94);
+
+            box-shadow:
+                0 8px 22px
+                rgba(0,0,0,.28);
+
+            transition:
+                transform .3s ease;
+
+        }
+
+        .btn-musica:hover {
+            transform:
+                scale(1.1);
+        }
+
+
+        /* ========================================
+           PÉTALOS
+        ======================================== */
+
+        #petalosContainer {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+        }
+
+        .petalo {
+
+            position: absolute;
+
+            top: -80px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            animation:
+                caerPetalo
+                linear forwards;
+
+        }
+
+        @keyframes caerPetalo {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-100px)
+                    rotate(0deg);
+
+            }
+
+            10% {
+
+                opacity: .85;
+
+            }
+
+            55% {
+
+                transform:
+                    translate3d(
+                        var(--x),
+                        55vh,
+                        0
+                    )
+                    rotate(210deg);
+
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    translate3d(
+                        calc(
+                            var(--x) * -.4
+                        ),
+                        115vh,
+                        0
+                    )
+                    rotate(480deg);
+
+            }
+
+        }
+
+
+        /* ========================================
+           RESPONSIVE TABLET
+        ======================================== */
+
+        @media
+        (max-width: 991px) {
+
+            .galeria-polaroid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+            .galeria-polaroid
+            > div:last-child {
+
+                grid-column:
+                    1 / -1;
+
+                width: 50%;
+
+                justify-self: center;
+
+            }
+
+            .vales-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        1fr
+                    );
+
+            }
+
+            .vales-grid
+            > div:last-child {
+
+                grid-column:
+                    1 / -1;
+
+                width: 50%;
+
+                justify-self: center;
+
+            }
+
+        }
+
+
+        /* ========================================
+           RESPONSIVE CELULAR
+        ======================================== */
+
+        @media
+        (max-width: 767px) {
+
+            .fondo-parallax {
+
+                transform:
+                    translate3d(
+                        0,
+                        calc(
+                            var(--scroll-parallax) * -0.08
+                        ),
+                        0
+                    );
+
+            }
+
+            .luz-parallax {
+
+                transform:
+                    translate3d(
+                        0,
+                        calc(
+                            var(--scroll-parallax) * -0.10
+                        ),
+                        0
+                    );
+
+            }
+
+            .capa-1 {
+
+                transform:
+                    translateY(
+                        calc(
+                            var(--scroll-parallax) * -0.015
+                        )
+                    );
+
+            }
+
+            .capa-2 {
+
+                transform:
+                    translateY(
+                        calc(
+                            var(--scroll-parallax) * -0.03
+                        )
+                    );
+
+            }
+
+            .capa-3 {
+
+                transform:
+                    translateY(
+                        calc(
+                            var(--scroll-parallax) * -0.05
+                        )
+                    );
+
+            }
+
+            .capa-luci-1 {
+
+                transform:
+                    translateY(
+                        calc(
+                            var(--scroll-parallax) * -0.03
+                        )
+                    );
+
+            }
+
+            .capa-luci-2 {
+
+                transform:
+                    translateY(
+                        calc(
+                            var(--scroll-parallax) * -0.06
+                        )
+                    );
+
+            }
+
+            section {
+                padding:
+                    55px 0;
+            }
+
+            .container-personalizado {
+
+                width:
+                    calc(
+                        100% - 24px
+                    );
+
+            }
+
+            .hero-titulo {
+
+                font-size:
+                    clamp(
+                        2.3rem,
+                        10vw,
+                        3.3rem
+                    );
+
+            }
+
+            .carta-box {
+
+                padding:
+                    48px
+                    22px
+                    30px;
+
+            }
+
+            .galeria-polaroid {
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 30px;
+
+            }
+
+            .galeria-polaroid > div,
+            .galeria-polaroid > div:last-child {
+
+                width:
+                    min(
+                        90%,
+                        360px
+                    );
+
+            }
+
+            .rot-1 {
+                transform:
+                    rotate(-2deg);
+            }
+
+            .rot-2 {
+                transform:
+                    rotate(2deg);
+            }
+
+            .rot-3 {
+                transform:
+                    rotate(-1deg);
+            }
+
+            .adornos-grid {
+
+                gap: 10px;
+
+            }
+
+            .adorno {
+
+                max-width:
+                    110px;
+
+            }
+
+            .medidor-box {
+
+                padding:
+                    25px 20px;
+
+            }
+
+            .vales-grid {
+
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: center;
+
+            }
+
+            .vales-grid > div,
+            .vales-grid > div:last-child {
+
+                width:
+                    min(
+                        92%,
+                        420px
+                    );
+
+            }
+
+            .ticket-vale {
+
+                min-height:
+                    210px;
+
+            }
+
+            .video-final {
+
+                border-radius:
+                    20px;
+
+            }
+
+            .video-final video {
+
+                max-height:
+                    70vh;
+
+            }
+
+        }
+
+
+        @media
+        (max-width: 430px) {
+
+            .intro-flor {
+                font-size: 4rem;
+            }
+
+            .intro h1 {
+                font-size:
+                    2.2rem;
+            }
+
+            .hero-titulo {
+                font-size:
+                    2.5rem;
+            }
+
+            .titulo-seccion {
+                font-size:
+                    2rem;
+            }
+
+            .carta-box {
+
+                padding:
+                    45px
+                    18px
+                    25px;
+
+            }
+
+            #texto-maquina {
+
+                font-size:
+                    .98rem;
+
+            }
+
+            .ramo {
+
+                width:
+                    min(
+                        75vw,
+                        250px
+                    );
+
+            }
+
+            .adorno {
+                max-width:
+                    95px;
+            }
+
+            .btn-sorpresa {
+
+                font-size:
+                    .95rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         FONDO + PARALLAX
+    ======================================== -->
+
+    <div class="fondo-parallax">
+        <div class="fondo"></div>
+    </div>
+
+    <div class="fondo-overlay"></div>
+
+    <div class="luz-parallax">
+        <div class="luz-central"></div>
+    </div>
+
+
+    <!-- ========================================
+         ESTRELLAS Y LUCIÉRNAGAS
+    ======================================== -->
+
+    <div id="cieloProfundo">
+
+        <div
+            class="capa-estrellas capa-1"
+            id="estrellasCapa1"
+        ></div>
+
+        <div
+            class="capa-estrellas capa-2"
+            id="estrellasCapa2"
+        ></div>
+
+        <div
+            class="capa-estrellas capa-3"
+            id="estrellasCapa3"
+        ></div>
+
+        <div
+            class="capa-luciernagas capa-luci-1"
+            id="luciernagasCapa1"
+        ></div>
+
+        <div
+            class="capa-luciernagas capa-luci-2"
+            id="luciernagasCapa2"
+        ></div>
+
+    </div>
+
+
+    <!-- Pétalos -->
+
+    <div id="petalosContainer"></div>
+
+
+    <!-- ========================================
+         INTRO
+    ======================================== -->
+
+    <div
+        class="intro"
+        id="intro"
+    >
+
+        <div class="intro-contenido">
+
+            <div class="intro-flor">
+                🌻
+            </div>
+
+            <h1>
+                ¡Dijiste que sí!
+            </h1>
+
+            <p>
+                Entonces estas flores
+                son para ti... 💛
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         AUDIO
+    ======================================== -->
+
+    <audio
+        id="musicaFondo"
+        loop
+        preload="auto"
+    >
+
+        <source
+            src="musica/love.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+    <button
+        id="btnMusica"
+        class="btn-musica"
+        type="button"
+    >
+        🔊
+    </button>
+
+
+    <!-- ========================================
+         CONTENIDO
+    ======================================== -->
+
+    <main class="contenido">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-contenido">
+
+                <div
+                    class="
+                        hero-flor
+                        revelar
+                    "
+                >
+                    🌻
+                </div>
+
+                <h1
+                    class="
+                        hero-titulo
+                        revelar
+                    "
+                >
+                    ¡Sabía que dirías que sí! 💛
+                </h1>
+
+                <p
+                    class="
+                        hero-subtitulo
+                        revelar
+                    "
+                >
+
+                    Tal vez no pueda darte
+                    un campo entero de flores
+                    amarillas...
+
+                    pero sí puedo hacerte
+                    este pequeño detalle
+                    especialmente para ti.
+
+                </p>
+
+                <span class="flecha-abajo">
+                    ↓
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- CARTA -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+                        Una pequeña carta
+                        para ti 💌
+                    </h2>
+
+                </div>
+
+                <div
+                    class="
+                        sobre-area
+                        revelar
+                    "
+                >
+
+                    <div class="carta-box">
+
+                        <p
+                            id="texto-maquina"
+                        ></p>
+
+                        <span
+                            class="cursor"
+                            id="cursor"
+                        ></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RAMO -->
+
+        <section>
+
+            <div
+                class="
+                    container-personalizado
+                    text-center
+                "
+            >
+
+                <div class="revelar">
+
+                    <p
+                        class="
+                            subtitulo-seccion
+                            mb-4
+                        "
+                    >
+
+                        Y obviamente...
+
+                        no podían faltar
+                        tus flores 🌻
+
+                    </p>
+
+                    <img
+                        id="ramo"
+                        src="img/ramo.png"
+                        alt="Ramo de flores"
+                        class="ramo"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- FOTOS -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+
+                        Fotitos de la niña
+                        más hermosa 📸
+
+                    </h2>
+
+                    <p class="subtitulo-seccion">
+
+                        Hay cosas que simplemente
+                        merecen ser guardadas.
+
+                    </p>
+
+                </div>
+
+
+                <div class="galeria-polaroid">
+
+
+                    <div class="revelar">
+
+                        <div
+                            class="
+                                polaroid
+                                rot-1
+                            "
+                        >
+
+                            <img
+                                src="img/foto1.jpeg"
+                                alt="Foto 1"
+                                style="
+                                    object-fit:contain;
+                                    background:#eee;
+                                "
+                            >
+
+                            <p class="texto-pacifico">
+                                Tu sonrisa... ✨
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <div
+                            class="
+                                polaroid
+                                rot-2
+                            "
+                        >
+
+                            <img
+                                src="img/foto4.jpeg"
+                                alt="Foto 2"
+                            >
+
+                            <p class="texto-pacifico">
+                                Tus cachetitos 🥹
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <div
+                            class="
+                                polaroid
+                                rot-3
+                            "
+                        >
+
+                            <img
+                                src="img/foto.jpeg"
+                                alt="Foto 3"
+                                style="
+                                    object-fit:contain;
+                                    background:#eee;
+                                "
+                            >
+
+                            <p class="texto-pacifico">
+                                Tu estatura 🌻
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- ADORNOS -->
+
+        <section>
+
+            <div
+                class="
+                    container-personalizado
+                    text-center
+                "
+            >
+
+                <div
+                    class="
+                        revelar
+                        mb-5
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+                        Unos regalitos... ✨
+                    </h2>
+
+                </div>
+
+
+                <div class="adornos-grid">
+
+
+                    <div class="revelar">
+
+                        <img
+                            src="img/adorno1.jpeg"
+                            class="adorno"
+                            alt="Adorno"
+                        >
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <img
+                            src="img/adorno2.jpeg"
+                            class="adorno"
+                            alt="Adorno"
+                        >
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <img
+                            src="img/adorno1.jpeg"
+                            class="adorno"
+                            alt="Adorno"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- LO QUE ME GUSTA -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+
+                        Lo que más me gusta
+                        de ti... 🙈
+
+                    </h2>
+
+                    <p class="subtitulo-seccion">
+
+                        Toca cada botón
+                        para descubrirlo.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        sorpresas-box
+                        revelar
+                    "
+                >
+
+
+                    <div class="d-grid gap-3">
+
+
+                        <button
+                            class="btn-sorpresa"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#sorpresa1"
+                        >
+                            Tu sonrisa... ✨
+                        </button>
+
+
+                        <div
+                            class="collapse"
+                            id="sorpresa1"
+                        >
+
+                            <div class="mensaje-oculto">
+
+                                Literalmente iluminas
+                                un día entero...
+
+                                o mejor dicho,
+                                todo un año.
+
+                                Mucho más que todas
+                                estas flores amarillas
+                                juntas. 💛
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn-sorpresa"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#sorpresa2"
+                        >
+                            Tu amabilidad... 🌷
+                        </button>
+
+
+                        <div
+                            class="collapse"
+                            id="sorpresa2"
+                        >
+
+                            <div class="mensaje-oculto">
+
+                                Siempre eres una buena
+                                persona y estás dispuesta
+                                a apoyar a los demás.
+
+                                Nunca cambies esa luz
+                                que tienes y sigue
+                                adelante sin rendirte.
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn-sorpresa"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#sorpresa3"
+                        >
+                            Tus abrazos... 🫂
+                        </button>
+
+
+                        <div
+                            class="collapse"
+                            id="sorpresa3"
+                        >
+
+                            <div class="mensaje-oculto">
+
+                                Creo que podrían
+                                convertirse en uno de
+                                mis lugares favoritos.
+
+                                El mejor refugio...
+
+                                algún día,
+                                quién sabe. 🥹
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="btn-sorpresa"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#sorpresa4"
+                        >
+                            Tu falta de hambre... 🍟
+                        </button>
+
+
+                        <div
+                            class="collapse"
+                            id="sorpresa4"
+                        >
+
+                            <div class="mensaje-oculto">
+
+                                Sobre todo cuando dices
+                                “no quiero nada”.
+
+                                Pero al final termino
+                                invitándote porque sé
+                                que esa pancita
+                                probablemente sí tenía
+                                hambre. 😂💛
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- MEDIDOR -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+                        ¿Cuánto te quiero? 🎚️
+                    </h2>
+
+                    <p class="subtitulo-seccion">
+
+                        A ver...
+
+                        intenta bajar
+                        el nivel.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        medidor-box
+                        text-center
+                        revelar
+                    "
+                >
+
+                    <div
+                        id="nivelCarino"
+                        class="mb-3"
+                    >
+                        100%
+                    </div>
+
+                    <input
+                        type="range"
+                        class="form-range"
+                        id="medidorCarino"
+                        min="0"
+                        max="100"
+                        value="100"
+                    >
+
+                    <p
+                        id="mensaje-medidor"
+                        class="mt-3"
+                    >
+
+                        ⚠️ Error del sistema:
+                        es técnicamente imposible
+                        quererte menos.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- VALES -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+                        Vales VIP para ti 🎟️
+                    </h2>
+
+                    <p class="subtitulo-seccion">
+
+                        Puedes tomarles captura
+                        y cobrarlos cuando quieras.
+
+                    </p>
+
+                </div>
+
+
+                <div class="vales-grid">
+
+
+                    <div class="revelar">
+
+                        <div class="ticket-vale">
+
+                            <div class="vale-icono">
+                                🍟
+                            </div>
+
+                            <h4 class="texto-pacifico">
+                                Vale por:
+                            </h4>
+
+                            <p class="fw-bold">
+
+                                Un postre,
+                                salchipapa
+                                o pollito
+
+                            </p>
+
+                            <small class="text-muted">
+                                Yo pago,
+                                tú eliges. 💛
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <div class="ticket-vale">
+
+                            <div class="vale-icono">
+                                🗣️
+                            </div>
+
+                            <h4 class="texto-pacifico">
+                                Vale por:
+                            </h4>
+
+                            <p class="fw-bold">
+                                Haré cualquier cosa
+                                que pidas &gt;:3
+                            </p>
+
+                            <small class="text-muted">
+                                No me voy a negar 😌
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="revelar">
+
+                        <div class="ticket-vale">
+
+                            <div class="vale-icono">
+                                🧸
+                            </div>
+
+                            <h4 class="texto-pacifico">
+                                Vale por:
+                            </h4>
+
+                            <p class="fw-bold">
+                                Un muñeco
+                            </p>
+
+                            <small class="text-muted">
+                                Redondito
+                                y esponjosito. 🥹
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="separador"></div>
+
+
+        <!-- VIDEO -->
+
+        <section>
+
+            <div class="container-personalizado">
+
+                <div
+                    class="
+                        text-center
+                        mb-5
+                        revelar
+                    "
+                >
+
+                    <h2 class="titulo-seccion">
+                        Un último mensaje
+                        para ti... 🎬
+                    </h2>
+
+                    <p class="subtitulo-seccion">
+                        Esto todavía
+                        no termina.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="
+                        video-final
+                        revelar
+                    "
+                >
+
+                    <video
+                        id="videoFinal"
+                        controls
+                        playsinline
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="video/video1.mp4"
+                            type="video/mp4"
+                        >
+
+                    </video>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+
+        <section class="final">
+
+            <div
+                class="
+                    container-personalizado
+                    final-contenido
+                "
+            >
+
+                <div class="revelar">
+
+                    <div class="final-corazon">
+                        💛
+                    </div>
+
+                    <h2
+                        class="
+                            titulo-seccion
+                            mt-4
+                        "
+                    >
+
+                        Gracias por ser
+                        mi 21 de septiembre 🌻
+
+                    </h2>
+
+                    <p
+                        class="
+                            subtitulo-seccion
+                            mt-3
+                        "
+                    >
+
+                        Espero que este
+                        pequeño detalle
+                        haya logrado
+                        sacarte una sonrisa.
+
+                    </p>
+
+                    <p
+                        class="
+                            texto-pacifico
+                            fs-3
+                            text-warning
+                            mt-4
+                        "
+                    >
+
+                        Estas flores
+                        son para ti.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- Bootstrap -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <script>
+
+        /* ========================================
+           VARIABLES
+        ======================================== */
+
+        const root =
+            document.documentElement;
+
+
+        const intro =
+            document.getElementById(
+                'intro'
+            );
+
+
+        const musica =
+            document.getElementById(
+                'musicaFondo'
+            );
+
+
+        const btnMusica =
+            document.getElementById(
+                'btnMusica'
+            );
+
+
+        const petalosContainer =
+            document.getElementById(
+                'petalosContainer'
+            );
+
+
+        const ramo =
+            document.getElementById(
+                'ramo'
+            );
+
+
+        const estrellasCapa1 =
+            document.getElementById(
+                'estrellasCapa1'
+            );
+
+
+        const estrellasCapa2 =
+            document.getElementById(
+                'estrellasCapa2'
+            );
+
+
+        const estrellasCapa3 =
+            document.getElementById(
+                'estrellasCapa3'
+            );
+
+
+        const luciernagasCapa1 =
+            document.getElementById(
+                'luciernagasCapa1'
+            );
+
+
+        const luciernagasCapa2 =
+            document.getElementById(
+                'luciernagasCapa2'
+            );
+
+
+        const esMovil =
+            window.matchMedia(
+                '(max-width: 767px)'
+            ).matches;
+
+
+        let musicaActiva =
+            false;
+
+
+        let targetPX = 0;
+
+        let targetPY = 0;
+
+        let actualPX = 0;
+
+        let actualPY = 0;
+
+
+        /* ========================================
+           INICIO
+        ======================================== */
+
+        window.addEventListener(
+            'load',
+            async () => {
+
+
+                iniciarCieloMagico();
+
+
+                try {
+
+                    musica.volume =
+                        .42;
+
+
+                    await musica.play();
+
+
+                    musicaActiva =
+                        true;
+
+
+                    btnMusica.textContent =
+                        '🔊';
+
+                }
+
+                catch(error) {
+
+                    musicaActiva =
+                        false;
+
+
+                    btnMusica.textContent =
+                        '🔇';
+
+                }
+
+
+                setTimeout(
+                    () => {
+
+                        explosionPetalos(
+                            esMovil
+                            ? 18
+                            : 32
+                        );
+
+                    },
+                    500
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        intro.classList.add(
+                            'ocultar'
+                        );
+
+                    },
+                    2300
+                );
+
+
+                setTimeout(
+                    iniciarPetalos,
+                    2000
+                );
+
+
+                setTimeout(
+                    escribirTexto,
+                    3300
+                );
+
+
+            }
+        );
+
+
+        /* ========================================
+           AUDIO
+        ======================================== */
+
+        btnMusica.addEventListener(
+            'click',
+            async () => {
+
+
+                if (
+                    musicaActiva
+                ) {
+
+                    musica.pause();
+
+                    musicaActiva =
+                        false;
+
+                    btnMusica.textContent =
+                        '🔇';
+
+                }
+
+                else {
+
+                    try {
+
+                        await musica.play();
+
+                        musicaActiva =
+                            true;
+
+                        btnMusica.textContent =
+                            '🔊';
+
+                    }
+
+                    catch(error) {
+
+                        console.log(
+                            error
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            'pointerdown',
+            async () => {
+
+
+                if (
+                    musica.paused &&
+                    !musicaActiva
+                ) {
+
+                    try {
+
+                        await musica.play();
+
+                        musicaActiva =
+                            true;
+
+                        btnMusica.textContent =
+                            '🔊';
+
+                    }
+
+                    catch(error) {}
+
+                }
+
+            },
+            {
+                once: true
+            }
+        );
+
+
+        /* ========================================
+           ESTRELLAS
+        ======================================== */
+
+        function crearEstrella(
+            tipo,
+            contenedor
+        ) {
+
+
+            const estrella =
+                document.createElement(
+                    'span'
+                );
+
+
+            estrella.className =
+                `estrella ${tipo}`;
+
+
+            let size;
+
+            let opMin;
+
+            let opMax;
+
+
+            if (
+                tipo === 'lejana'
+            ) {
+
+                size =
+                    Math.random() *
+                    1.5 +
+                    .7;
+
+                opMin =
+                    .05;
+
+                opMax =
+                    .40;
+
+            }
+
+            else if (
+                tipo === 'media'
+            ) {
+
+                size =
+                    Math.random() *
+                    2 +
+                    1;
+
+                opMin =
+                    .10;
+
+                opMax =
+                    .70;
+
+            }
+
+            else {
+
+                size =
+                    Math.random() *
+                    2.8 +
+                    1.5;
+
+                opMin =
+                    .18;
+
+                opMax =
+                    .90;
+
+            }
+
+
+            estrella.style.width =
+                `${size}px`;
+
+
+            estrella.style.height =
+                `${size}px`;
+
+
+            estrella.style.left =
+                `${
+                    Math.random() *
+                    100
+                }%`;
+
+
+            estrella.style.top =
+                `${
+                    Math.random() *
+                    100
+                }%`;
+
+
+            estrella.style.setProperty(
+                '--opMin',
+                opMin
+            );
+
+
+            estrella.style.setProperty(
+                '--opMax',
+                opMax
+            );
+
+
+            estrella.style.animationDuration =
+                `${
+                    Math.random() *
+                    3 +
+                    2.5
+                }s`;
+
+
+            estrella.style.animationDelay =
+                `${
+                    Math.random() *
+                    4
+                }s`;
+
+
+            contenedor.appendChild(
+                estrella
+            );
+
+
+        }
+
+
+        function crearBokeh(
+            contenedor
+        ) {
+
+
+            const bokeh =
+                document.createElement(
+                    'span'
+                );
+
+
+            bokeh.className =
+                'estrella bokeh';
+
+
+            const size =
+                Math.random() *
+                12 +
+                8;
+
+
+            bokeh.style.width =
+                `${size}px`;
+
+
+            bokeh.style.height =
+                `${size}px`;
+
+
+            bokeh.style.left =
+                `${
+                    Math.random() *
+                    100
+                }%`;
+
+
+            bokeh.style.top =
+                `${
+                    Math.random() *
+                    100
+                }%`;
+
+
+            bokeh.style.setProperty(
+                '--opMin',
+                .02
+            );
+
+
+            bokeh.style.setProperty(
+                '--opMax',
+                .12
+            );
+
+
+            bokeh.style.animationDuration =
+                `${
+                    Math.random() *
+                    4 +
+                    4
+                }s`;
+
+
+            contenedor.appendChild(
+                bokeh
+            );
+
+
+        }
+
+
+        function generarEstrellas() {
+
+
+            const cantidadLejanas =
+                esMovil
+                ? 22
+                : 40;
+
+
+            const cantidadMedias =
+                esMovil
+                ? 15
+                : 28;
+
+
+            const cantidadCercanas =
+                esMovil
+                ? 8
+                : 16;
+
+
+            for (
+                let i = 0;
+                i < cantidadLejanas;
+                i++
+            ) {
+
+                crearEstrella(
+                    'lejana',
+                    estrellasCapa1
+                );
+
+            }
+
+
+            for (
+                let i = 0;
+                i < cantidadMedias;
+                i++
+            ) {
+
+                crearEstrella(
+                    'media',
+                    estrellasCapa2
+                );
+
+            }
+
+
+            for (
+                let i = 0;
+                i < cantidadCercanas;
+                i++
+            ) {
+
+                crearEstrella(
+                    'cercana',
+                    estrellasCapa3
+                );
+
+            }
+
+
+            const cantidadBokeh =
+                esMovil
+                ? 4
+                : 8;
+
+
+            for (
+                let i = 0;
+                i < cantidadBokeh;
+                i++
+            ) {
+
+                crearBokeh(
+                    estrellasCapa3
+                );
+
+            }
+
+
+        }
+
+
+        /* ========================================
+           LUCIÉRNAGAS
+        ======================================== */
+
+        function crearLuciernaga(
+            contenedor,
+            clase
+        ) {
+
+
+            const luci =
+                document.createElement(
+                    'span'
+                );
+
+
+            luci.className =
+                `luciernaga ${clase}`;
+
+
+            const size =
+                clase === 'suave'
+                ?
+                Math.random() * 6 + 4
+                :
+                Math.random() * 4 + 2.5;
+
+
+            luci.style.width =
+                `${size}px`;
+
+
+            luci.style.height =
+                `${size}px`;
+
+
+            luci.style.left =
+                `${
+                    Math.random() *
+                    100
+                }%`;
+
+
+            luci.style.top =
+                `${
+                    15 +
+                    Math.random() *
+                    75
+                }%`;
+
+
+            luci.style.setProperty(
+                '--movX',
+                `${
+                    Math.random() *
+                    90 -
+                    45
+                }px`
+            );
+
+
+            luci.style.setProperty(
+                '--movY',
+                `${
+                    Math.random() *
+                    -70 -
+                    20
+                }px`
+            );
+
+
+            const duracion =
+                Math.random() *
+                5 +
+                7;
+
+
+            luci.style.setProperty(
+                '--duracion',
+                `${duracion}s`
+            );
+
+
+            luci.style.setProperty(
+                '--brillo',
+                `${
+                    duracion *
+                    .45
+                }s`
+            );
+
+
+            luci.style.setProperty(
+                '--delay',
+                `${
+                    Math.random() *
+                    6
+                }s`
+            );
+
+
+            contenedor.appendChild(
+                luci
+            );
+
+
+        }
+
+
+        function generarLuciernagas() {
+
+
+            const cantidad1 =
+                esMovil
+                ? 4
+                : 7;
+
+
+            const cantidad2 =
+                esMovil
+                ? 2
+                : 5;
+
+
+            for (
+                let i = 0;
+                i < cantidad1;
+                i++
+            ) {
+
+                crearLuciernaga(
+                    luciernagasCapa1,
+                    'leve'
+                );
+
+            }
+
+
+            for (
+                let i = 0;
+                i < cantidad2;
+                i++
+            ) {
+
+                crearLuciernaga(
+                    luciernagasCapa2,
+                    'suave'
+                );
+
+            }
+
+
+        }
+
+
+        /* ========================================
+           PARALLAX
+        ======================================== */
+
+        function moverParallaxMouse(
+            event
+        ) {
+
+
+            if (
+                esMovil
+            ) {
+                return;
+            }
+
+
+            const porcentajeX =
+                event.clientX /
+                window.innerWidth -
+                .5;
+
+
+            const porcentajeY =
+                event.clientY /
+                window.innerHeight -
+                .5;
+
+
+            targetPX =
+                porcentajeX *
+                26;
+
+
+            targetPY =
+                porcentajeY *
+                20;
+
+
+        }
+
+
+        function resetParallax() {
+
+
+            targetPX = 0;
+
+            targetPY = 0;
+
+
+        }
+
+
+        function actualizarScrollParallax() {
+
+
+            const scroll =
+                window.scrollY ||
+                window.pageYOffset;
+
+
+            const maximo =
+                esMovil
+                ? 80
+                : 50;
+
+
+            const valor =
+                Math.min(
+                    scroll *
+                    .07,
+                    maximo
+                );
+
+
+            root.style.setProperty(
+                '--scroll-parallax',
+                `${valor}px`
+            );
+
+
+        }
+
+
+        function animarParallax() {
+
+
+            actualPX +=
+                (
+                    targetPX -
+                    actualPX
+                ) *
+                .07;
+
+
+            actualPY +=
+                (
+                    targetPY -
+                    actualPY
+                ) *
+                .07;
+
+
+            root.style.setProperty(
+                '--px',
+                `${actualPX}px`
+            );
+
+
+            root.style.setProperty(
+                '--py',
+                `${actualPY}px`
+            );
+
+
+            requestAnimationFrame(
+                animarParallax
+            );
+
+
+        }
+
+
+        function iniciarParallax() {
+
+
+            actualizarScrollParallax();
+
+
+            window.addEventListener(
+                'scroll',
+                actualizarScrollParallax,
+                {
+                    passive: true
+                }
+            );
+
+
+            if (
+                !esMovil
+            ) {
+
+
+                window.addEventListener(
+                    'mousemove',
+                    moverParallaxMouse
+                );
+
+
+                window.addEventListener(
+                    'mouseleave',
+                    resetParallax
+                );
+
+
+            }
+
+
+            animarParallax();
+
+
+        }
+
+
+        function iniciarCieloMagico() {
+
+
+            generarEstrellas();
+
+            generarLuciernagas();
+
+            iniciarParallax();
+
+
+        }
+
+
+        /* ========================================
+           PÉTALOS
+        ======================================== */
+
+        function crearPetalo() {
+
+
+            const petalo =
+                document.createElement(
+                    'img'
+                );
+
+
+            petalo.src =
+                'img/petalo.png';
+
+
+            petalo.className =
+                'petalo';
+
+
+            const size =
+                esMovil
+                ?
+                Math.random() * 15 + 14
+                :
+                Math.random() * 22 + 17;
+
+
+            petalo.style.width =
+                `${size}px`;
+
+
+            petalo.style.height =
+                `${size}px`;
+
+
+            petalo.style.left =
+                `${
+                    Math.random() *
+                    100
+                }vw`;
+
+
+            const movimiento =
+                esMovil
+                ?
+                Math.random() * 100 - 50
+                :
+                Math.random() * 180 - 90;
+
+
+            petalo.style.setProperty(
+                '--x',
+                `${movimiento}px`
+            );
+
+
+            const duracion =
+                Math.random() *
+                5 +
+                6;
+
+
+            petalo.style.animationDuration =
+                `${duracion}s`;
+
+
+            petalosContainer
+                .appendChild(
+                    petalo
+                );
+
+
+            setTimeout(
+                () => {
+
+                    petalo.remove();
+
+                },
+                duracion *
+                1000
+            );
+
+
+        }
+
+
+        function iniciarPetalos() {
+
+
+            const cantidad =
+                esMovil
+                ? 8
+                : 16;
+
+
+            for (
+                let i = 0;
+                i < cantidad;
+                i++
+            ) {
+
+
+                setTimeout(
+                    crearPetalo,
+                    i * 150
+                );
+
+
+            }
+
+
+            setInterval(
+                crearPetalo,
+                esMovil
+                ? 750
+                : 500
+            );
+
+
+        }
+
+
+        function explosionPetalos(
+            cantidad
+        ) {
+
+
+            for (
+                let i = 0;
+                i < cantidad;
+                i++
+            ) {
+
+
+                setTimeout(
+                    crearPetalo,
+                    i * 35
+                );
+
+
+            }
+
+
+        }
+
+
+        /* ========================================
+           CARTA
+        ======================================== */
+
+        const texto =
+
+            "Dicen que regalar flores amarillas el 21 de septiembre representa el deseo de compartir momentos especiales con alguien. Hoy te dedico estas flores virtuales porque mi mundo es un poquito más bonito y divertido desde que estás en él. Gracias por ser esa personita especial y por darle una razón más a este día para recordarlo. ¡Gracias por ser mi 21 de septiembre! 🌻💛";
+
+
+        const textoMaquina =
+            document.getElementById(
+                'texto-maquina'
+            );
+
+
+        const cursor =
+            document.getElementById(
+                'cursor'
+            );
+
+
+        let indiceTexto =
+            0;
+
+
+        function escribirTexto() {
+
+
+            if (
+                indiceTexto <
+                texto.length
+            ) {
+
+
+                const caracter =
+                    texto.charAt(
+                        indiceTexto
+                    );
+
+
+                textoMaquina.textContent +=
+                    caracter;
+
+
+                indiceTexto++;
+
+
+                let velocidad =
+                    esMovil
+                    ? 20
+                    : 30;
+
+
+                if (
+                    caracter === '.' ||
+                    caracter === '!' ||
+                    caracter === ','
+                ) {
+
+                    velocidad =
+                        esMovil
+                        ? 65
+                        : 100;
+
+                }
+
+
+                setTimeout(
+                    escribirTexto,
+                    velocidad
+                );
+
+
+            }
+
+            else {
+
+
+                cursor.style.display =
+                    'none';
+
+
+            }
+
+
+        }
+
+
+        /* ========================================
+           SCROLL REVEAL
+        ======================================== */
+
+        const elementosReveal =
+            document.querySelectorAll(
+                '.revelar'
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+
+                    entries.forEach(
+                        entry => {
+
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+
+                                entry.target
+                                    .classList.add(
+                                        'visible'
+                                    );
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+
+                            }
+
+
+                        }
+                    );
+
+
+                },
+
+                {
+
+                    threshold:
+                        esMovil
+                        ? .07
+                        : .14
+
+                }
+
+            );
+
+
+        elementosReveal
+            .forEach(
+                elemento => {
+
+
+                    observer.observe(
+                        elemento
+                    );
+
+
+                }
+            );
+
+
+        /* ========================================
+           MEDIDOR
+        ======================================== */
+
+        const medidor =
+            document.getElementById(
+                'medidorCarino'
+            );
+
+
+        const nivelCarino =
+            document.getElementById(
+                'nivelCarino'
+            );
+
+
+        const mensajeMedidor =
+            document.getElementById(
+                'mensaje-medidor'
+            );
+
+
+        const mensajesMedidor = [
+
+            '⚠️ Error del sistema: imposible quererte menos.',
+
+            '😂 Buen intento, pero sigue en 100%.',
+
+            '💛 El sistema está bloqueado.',
+
+            '🌻 Nivel mínimo permitido: 100%.',
+
+            '😌 No vas a poder bajarlo.'
+
+        ];
+
+
+        let intentosMedidor =
+            0;
+
+
+        medidor.addEventListener(
+            'input',
+            function() {
+
+
+                nivelCarino.textContent =
+                    `${this.value}%`;
+
+
+                if (
+                    Number(
+                        this.value
+                    ) <
+                    100
+                ) {
+
+
+                    mensajeMedidor.style.opacity =
+                        '1';
+
+
+                    mensajeMedidor.textContent =
+                        mensajesMedidor[
+                            intentosMedidor %
+                            mensajesMedidor.length
+                        ];
+
+
+                    intentosMedidor++;
+
+
+                    setTimeout(
+                        () => {
+
+
+                            this.value =
+                                100;
+
+
+                            nivelCarino.textContent =
+                                '100%';
+
+
+                        },
+                        350
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+        /* ========================================
+           MINI CORAZONES
+        ======================================== */
+
+        function crearMiniCorazon(
+            x,
+            y
+        ) {
+
+
+            const corazon =
+                document.createElement(
+                    'span'
+                );
+
+
+            const iconos = [
+
+                '💛',
+                '✨',
+                '🌻'
+
+            ];
+
+
+            corazon.textContent =
+                iconos[
+                    Math.floor(
+                        Math.random() *
+                        iconos.length
+                    )
+                ];
+
+
+            corazon.style.position =
+                'fixed';
+
+
+            corazon.style.left =
+                `${x}px`;
+
+
+            corazon.style.top =
+                `${y}px`;
+
+
+            corazon.style.zIndex =
+                '9999';
+
+
+            corazon.style.pointerEvents =
+                'none';
+
+
+            corazon.style.transition =
+                'all 1.2s ease';
+
+
+            document.body.appendChild(
+                corazon
+            );
+
+
+            requestAnimationFrame(
+                () => {
+
+
+                    corazon.style.opacity =
+                        '0';
+
+
+                    corazon.style.transform =
+
+                        `translate(
+                            ${
+                                Math.random() *
+                                60 -
+                                30
+                            }px,
+                            -75px
+                        )
+                        scale(1.4)`;
+
+
+                }
+            );
+
+
+            setTimeout(
+                () => {
+
+                    corazon.remove();
+
+                },
+                1300
+            );
+
+
+        }
+
+
+        /* ========================================
+           BOTONES SORPRESA
+        ======================================== */
+
+        document
+            .querySelectorAll(
+                '.btn-sorpresa'
+            )
+            .forEach(
+                boton => {
+
+
+                    boton.addEventListener(
+                        'click',
+                        () => {
+
+
+                            const rect =
+                                boton
+                                .getBoundingClientRect();
+
+
+                            const cantidad =
+                                esMovil
+                                ? 4
+                                : 6;
+
+
+                            for (
+                                let i = 0;
+                                i < cantidad;
+                                i++
+                            ) {
+
+
+                                setTimeout(
+                                    () => {
+
+
+                                        crearMiniCorazon(
+
+                                            rect.left +
+                                            rect.width /
+                                            2,
+
+                                            rect.top
+
+                                        );
+
+
+                                    },
+                                    i * 80
+                                );
+
+
+                            }
+
+
+                        }
+                    );
+
+
+                }
+            );
+
+
+        /* ========================================
+           RAMO INTERACTIVO
+        ======================================== */
+
+        ramo.addEventListener(
+            'click',
+            () => {
+
+
+                const rect =
+                    ramo
+                    .getBoundingClientRect();
+
+
+                explosionPetalos(
+                    esMovil
+                    ? 10
+                    : 18
+                );
+
+
+                for (
+                    let i = 0;
+                    i < 6;
+                    i++
+                ) {
+
+
+                    setTimeout(
+                        () => {
+
+
+                            crearMiniCorazon(
+
+                                rect.left +
+                                rect.width /
+                                2,
+
+                                rect.top +
+                                rect.height /
+                                2
+
+                            );
+
+
+                        },
+                        i * 90
+                    );
+
+
+                }
+
+
+            }
+        );
+
+
+        /* ========================================
+           VIDEO FINAL
+        ======================================== */
+
+        const videoFinal =
+            document.getElementById(
+                'videoFinal'
+            );
+
+
+        videoFinal.addEventListener(
+            'play',
+            () => {
+
+
+                if (
+                    !musica.paused
+                ) {
+
+
+                    musica.volume =
+                        .10;
+
+
+                }
+
+
+            }
+        );
+
+
+        videoFinal.addEventListener(
+            'pause',
+            () => {
+
+
+                if (
+                    musicaActiva
+                ) {
+
+
+                    musica.volume =
+                        .42;
+
+
+                }
+
+
+            }
+        );
+
+
+        videoFinal.addEventListener(
+            'ended',
+            () => {
+
+
+                if (
+                    musicaActiva
+                ) {
+
+
+                    musica.volume =
+                        .42;
+
+
+                }
+
+
+                explosionPetalos(
+                    esMovil
+                    ? 18
+                    : 35
+                );
+
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
